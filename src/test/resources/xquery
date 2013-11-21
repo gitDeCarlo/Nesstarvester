@@ -1,0 +1,17 @@
+	if(options.getDbPath()!= null){
+			context.mprop.setObject("DBPATH", options.getDbPath());
+		}
+		
+		//Opens the database and adds catalog to database to be queried
+			new Open(options.getDb()).execute(context);
+			
+			//Add new catalog
+			new Add(" ", catalogXml).execute(context);
+			
+			new Close().execute(context);
+			
+				//gives the updates that are needed based on the xquery.
+		String updates = (new XQuery(xquery).execute(context));
+		
+		//gives the updates that are needed based on the xquery.
+		String updates = (new XQuery(xquery).execute(context));

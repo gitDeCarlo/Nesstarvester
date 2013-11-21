@@ -1,0 +1,146 @@
+package org.openmetadata.nesstar.task;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Locale;
+import java.util.Properties;
+
+import org.apache.log4j.Logger;
+import org.openmetadata.nesstar.HarvesterOptions;
+import org.openmetadata.nesstar.NesstarHarvester;
+import org.openmetadata.nesstar.NesstarUtils;
+
+import com.nesstar.api.NesstarDB;
+import com.nesstar.api.NesstarDBFactory;
+import com.nesstar.api.Study;
+
+public class FullUpdate {
+
+	private HarvesterOptions options;
+
+
+	Logger logger = Logger.getLogger(this.getClass().getName());
+
+	//////////////////////////////////
+	//			CONSTRUCTOR
+	//////////////////////////////////
+	public FullUpdate(HarvesterOptions options){
+		this.options = options;
+	}
+
+	public String runUpdate(Properties applicationProperties) throws Exception{
+
+		//Needed updates will be empty to indicate full update to the publisher
+		String neededUpdates="";
+
+		NesstarUtils utils = new NesstarUtils(options);
+
+		//Creates the Nesstar Harvester
+		NesstarHarvester nesstarvester = utils.getNesstarHarvester();
+
+
+		ArrayList<Locale> locales = new ArrayList<Locale>();
+
+		if(options.getLanguageList() != null){
+			for(String lang : options.getLanguageList()){
+				locales.add(new Locale(lang));
+			}
+		}
+		else{
+			locales = new ArrayList<Locale>(Arrays.asList(utils.getServerLanguages()));
+		}
+
+		//Start loop for languages
+		for(Locale locale : locales){
+			logger.info("Running harvest on files of the language:"+locale.getLanguage());
+			NesstarDB nesstarDb = NesstarDBFactory.getInstance();
+			nesstarDb.setPreferredLanguages(locale);
+
+			Collection<Study> studyList = null;
+			boolean continueUpdate = true;
+
+			if(options.getCatalogList() != null && options.getCatalogList().size() > 0){
+				logger.info("Retrieving studies from the catalogs");
+				//Collects the list of studys that will be downloaded
+				studyList = utils.getStudies(options.getCatalogList());
+			}
+			else{
+				try{
+					logger.info("Retrieving flat list of studies.");
+					studyList = utils.getServerConfig().getServers().get(0).getBank(Study.class).getAll();
+				}
+				catch(Exception e){
+					logger.info("ERROR: "+e.getMessage());
+					logger.info("No Files were found");
+					System.exit(0);
+				}
+			}
+
+			//If there is no folder to hold the output it is created where specified by the HarvesterOptions 
+			if(!new File(options.getOutputFolder()).exists()){
+				new File(options.getOutputFolder()).mkdirs();
+			}
+
+			if(options.getCodebookFolder() != null){
+				logger.info("Codebook 2.5 files will be saved to: "+options.getOutputFolder()+options.getCodebookFolder());
+				//Creates directory to hold the patched Codebook 2.5 files
+				if(!new File(options.getOutputFolder()+options.getCodebookFolder()).exists()){
+					new File(options.getOutputFolder()+options.getCodebookFolder()).mkdir();
+				}
+			}
+
+			if(options.getRawFolder().equalsIgnoreCase(options.getOutputFolder())){
+				logger.info("Raw Codebook files will be saved to: "+options.getOutputFolder());
+			}
+			else{
+				logger.info("Raw Codebook files will be saved to: "+options.getOutputFolder()+options.getRawFolder());
+			}
+
+			//Creates directory to hold the raw ddi taken off the server
+			if(!new File(options.getOutputFolder()+options.getRawFolder()).exists()){
+				new File(options.getOutputFolder()+options.getRawFolder()).mkdir();
+			}
+
+			if(continueUpdate){
+
+				//Creates an xml file that catalogs all the studies found at the server and when they were added.
+				//This will be used in the Incremental update to determine which studies need to be re-downloaded
+				logger.info("Retreiving XML Catalog (index of studies)");
+				String catalogXml = utils.buildCatalogXml(studyList, locale.getLanguage());
+
+				//Retreives and saves the DDI from the server
+				logger.info("Pulling files from server");
+				nesstarvester.harvestAndSave(studyList, utils, options.getCodebookFolder(), locale.getLanguage());
+			
+				String updatesString = "";
+				
+				for(Study study: studyList){
+					updatesString+= (study.getId()+":new,");
+				}
+				
+				if(!updatesString.isEmpty()){
+					updatesString = updatesString.substring(0, updatesString.length()-1);
+				}
+				applicationProperties.setProperty("updates",updatesString);
+			}
+		}
+
+		return neededUpdates;
+	}
+
+
+	//////////////////////////////////////
+	//		GETTERS/SETTERS	
+	//////////////////////////////////////
+
+	public HarvesterOptions getOptions() {
+		return options;
+	}
+
+	public void setOptions(HarvesterOptions options) {
+		this.options = options;
+	}
+
+}
