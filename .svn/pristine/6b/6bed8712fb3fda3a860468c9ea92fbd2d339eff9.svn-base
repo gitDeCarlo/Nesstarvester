@@ -1,0 +1,5 @@
+#---Harvester Options for Nesstarvester---
+#Thu Nov 07 16:45:04 MST 2013
+outputFolder=/home/andrew/Nesstar/ch_fors_compass
+db=ch_fors_compass
+dbPath=/home/andrew/BaseXData/

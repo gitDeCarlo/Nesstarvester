@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Nesstarvester xmlns="nesstarvester:1_0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="nesstarvester:1_0 schemas/nesstarvester/Nesstarvester.xsd">
+    <MetadataStore id="default" root="metastore"/>
+
+    <Server id="adp" nesstarId="MyServer" url="http://nesstar2.adp.fdv.uni-lj.si">
+        <Name xml:lang="en">Social Science Data Archives, Slovenia</Name>
+        <Name xml:lang="sl">Arhiv družboslovnih podatkov</Name>
+        <Catalog id="adp_en" nesstarId="Catalog34" language="en">
+            <Name xml:lang="en">Social Science Data Archives, Slovenia</Name>
+        </Catalog>
+        <Catalog id="adp_sl" nesstarId="ADP" language="sl">
+            <Name xml:lang="sl">Katalog Arhiva družboslovnih podatkov Slovenije</Name>
+        </Catalog>
+    </Server>
+
+    <Server id="assda" nesstarId="ASSDA" url="http://nesstar.assda.edu.au/">
+        <Name xml:lang="en">Australian Social Science Data Archive</Name>
+        <Catalog id="assda" nesstarId="ASSDA" language="en">
+            <Name xml:lang="en">Australian Social Science Data Archive</Name>
+        </Catalog>
+    </Server>
+    
+    <Server id="cdsp" nesstarId="cdsp" url="http://nesstar.sciences-po.fr:81">
+        <Name xml:lang="en">Centre de données socio-politiques</Name>
+        <Abbreviation>CDSP</Abbreviation>
+        <Catalog id="cdsp" nesstarId="cdsp" language="fr">
+            <Name xml:lang="fr">Centre de données socio-politiques</Name>
+        </Catalog>
+    </Server>
+    
+    <Server id="dda" nesstarId="DDA" url="http://nesstar.dda.dk">
+        <Name xml:lang="en">Danish Data Archive</Name>
+        <Abbreviation>DDA</Abbreviation>
+        <Catalog id="dda" nesstarId="DDA" language="da">
+            <Name xml:lang="en">Danish Data Archive</Name>
+        </Catalog>
+    </Server>
+
+    <Server id="dans" nesstarId="NesstarProductie" url="http://nesstar01.dans.knaw.nl/">
+        <Name xml:lang="en">Dutch Data Archiving and Networked Services</Name>
+        <Abbreviation>DANS</Abbreviation>
+        <!-- group all catalogs in single DDI folder -->
+        <Catalog id="dans">
+        	<NesstarCatalog nesstarId="*"></NesstarCatalog>
+        	<NesstarCatalog nesstarId="NesstarProductie " exclude="true">
+        </Catalog>
+        <Catalog id="dans" nesstarId="NesstarProductie ">
+            <Name xml:lang="en">Dutch Parliamentary Election Studies (NKO) (DPES)</Name>
+        </Catalog>
+        <Catalog id="dans" nesstarId="Catalog1">
+            <Name xml:lang="en">Cultural Changes in the Netherlands</Name>
+        </Catalog>
+        <Catalog id="dans" nesstarId="Catalog2">
+            <Name xml:lang="en">Time Budget Survey (TBO)</Name>
+        </Catalog>
+        <Catalog id="dans" nesstarId="Catalog3">
+            <Name xml:lang="en">Amenities and Services Utilization Survey (AVO)</Name>
+        </Catalog>
+        <Catalog id="dans" nesstarId="Catalog4">
+            <Name xml:lang="en">Socio-Cultural Developments in the Netherlands (SOCON)</Name>
+        </Catalog>
+        <Catalog id="dans" nesstarId="Catalog5">
+            <Name xml:lang="en">Expectations for the future</Name>
+        </Catalog>
+        <Catalog id="dans" nesstarId="Catalog6">
+            <Name xml:lang="en">National survey pupils secondary schools (NSO)</Name>
+        </Catalog>
+        <Catalog id="dans" nesstarId="Catalog7">
+            <Name xml:lang="en">COMPSOC</Name>
+        </Catalog>
+    </Server>
+    
+    <Server id="esds" nesstarId="ESDS2" url="http://nesstar.esds.ac.uk">
+        <Name xml:lang="en">Economic and Social Data Service (ESDS), United Kingdom</Name>
+        <Abbreviation>esds</Abbreviation>
+        <Catalog id="esds_research" nesstarId="Catalog56" language="en">
+            <Name xml:lang="en">ESDS Research Datasets</Name>
+        </Catalog>
+        <Catalog id="esds_teaching" nesstarId="Catalog27" language="en">
+            <Name xml:lang="en">ESDS Teaching Datasets</Name>
+        </Catalog>
+    </Server>
+    
+    <Server id="ess" nesstarId="ESS" url="http://nesstar.ess.nsd.uib.no">
+        <Name xml:lang="en">European Social Survey Data</Name>
+        <Catalog id="ess" nesstarId="ess" language="en">
+            <Name xml:lang="en">European Social Survey Data</Name>
+            <Abbreviation>ESS</Abbreviation>
+        </Catalog>
+    </Server>
+    
+    <Server id="fsd" nesstarId="FSD" url="http://fsd2.uta.fi:8080/">
+        <Name xml:lang="en">Finish Social Science Data Archive</Name>
+        <Abbreviation>fsd</Abbreviation>
+        <Catalog id="fsd_en" nesstarId="Catalog2" language="en">
+            <Name xml:lang="en">Finish Social Science Data Archive (English catalog)</Name>
+            <AdminNote>No variable level metadata</AdminNote>
+        </Catalog>
+        <Catalog id="fsd_fi" nesstarId="Catalog1" language="fi">
+            <Name xml:lang="en">Finish Social Science Data Archive (Finish catalog)</Name>
+        </Catalog>
+        <Catalog id="fsd_sv" nesstarId="Catalog3" language="sv">
+            <Name xml:lang="en">Finish Social Science Data Archive (Swedish catalog)</Name>
+        </Catalog>
+    </Server>
+    
+    <Server id="gesis" nesstarId="ZACAT" url="http://zacat.gesis.org">
+        <Name xml:lang="GESIS"></Name>
+        <Catalog id="gesis_issp" nesstarId="Catalog2">
+            <Name xml:lang="en">ISSP - The International Social Survey Programme</Name>
+        </Catalog>
+        <!-- group 3 eurobarometer catalog in single DDI catalog -->
+        <Catalog id="gesis_eurobaro" nesstarId="Catalog1">
+            <Name xml:lang="en">Standard and Special Eurobarometer Series</Name>
+        </Catalog>
+        <Catalog id="gesis_eurobaro" nesstarId="Catalog3">
+            <Name xml:lang="en">Candidate Countries Eurobarometer Series</Name>
+            <Abbreviation>CC-EB</Abbreviation>
+        </Catalog>
+        <Catalog id="gesis_eurobaro" nesstarId="Catalog4">
+            <Name xml:lang="en">Central and Eastern Eurobarometer Series</Name>
+            <Abbreviation>CEEB</Abbreviation>
+        </Catalog>
+        <!-- end eurobarometer group -->        
+        <Catalog id="gesis_sse" nesstarId="Catalog17">
+            <Name xml:lang="en">Studies from Eastern Europe</Name>
+            <Abbreviation>SEE</Abbreviation>
+        </Catalog>
+        <Catalog id="gesis_evs" nesstarId="Catalog16">
+            <Name xml:lang="en">European Values Study</Name>
+        </Catalog>
+        <Catalog id="gesis_elect" nesstarId="Catalog5">
+            <Name xml:lang="en">Election Studies</Name>
+        </Catalog>
+        <Catalog id="gesis_polit" nesstarId="Catalog48" language="de">
+            <Name xml:lang="en">Politbarometer</Name>
+        </Catalog>
+    </Server>
+
+    <Server id="issda" nesstarId="ISSDA" url="http://nesstar.ucd.ie:8000">
+        <Name xml:lang="en">Irish Social Science Data Archive</Name>
+        <!-- all catalogs in same DDI folder -->
+        <Catalog id="issda" nesstarId="ISSDA" language="en">
+            <Name xml:lang="en">QNHS: Quarterly National Household Survey</Name>
+        </Catalog>
+        <Catalog id="issda" nesstarId="Catalog15" language="en">
+            <Name xml:lang="en">SLAN: Survey on Lifestyles, Attitudes &amp; Nutrition</Name>
+        </Catalog>
+        <Catalog id="issda" nesstarId="Catalog2" language="en">
+            <Name xml:lang="en">Opinion Polls</Name>
+        </Catalog>
+        <Catalog id="issda" nesstarId="Catalog13" language="en">
+            <Name xml:lang="en">SILC: Statistics on Income Living Conditions</Name>
+        </Catalog>
+        <Catalog id="issda" nesstarId="Catalog17" language="en">
+            <Name xml:lang="en">Insight 07: Health Study "Insight 07"</Name>
+        </Catalog>
+        <Catalog id="issda" nesstarId="Catalog18" language="en">
+            <Name xml:lang="en">HBS: Household Budget Survey</Name>
+        </Catalog>
+        <Catalog id="issda" nesstarId="Catalog24" language="en">
+            <Name xml:lang="en">Housing Condition 2001/02</Name>
+        </Catalog>
+        <Catalog id="issda" nesstarId="Catalog19" language="en">
+            <Name xml:lang="en">Time Use Survey</Name>
+        </Catalog>
+        <Catalog id="issda" nesstarId="Catalog20" language="en">
+            <Name xml:lang="en">National Disability Authority</Name>
+        </Catalog>
+        <Catalog id="issda" nesstarId="Catalog21" language="en">
+            <Name xml:lang="en">Survey of Employee's Attitudes &amp; Expectations of the Workplace</Name>
+        </Catalog>
+        <Catalog id="issda" nesstarId="Catalog22" language="en">
+            <Name xml:lang="en">Public Attitudes Towards Forestry in Ireland</Name>
+        </Catalog>
+        <Catalog id="issda" nesstarId="Catalog23" language="en">
+            <Name xml:lang="en">Crisis Pregnancy Agency Surveys</Name>
+        </Catalog>
+        <Catalog id="issda" nesstarId="Catalog25" language="en">
+            <Name xml:lang="en">School Leavers Survey</Name>
+        </Catalog>
+        <Catalog id="issda" nesstarId="Catalog28" language="en">
+            <Name xml:lang="en">Irish Social and Political Attitudes</Name>
+        </Catalog>
+    </Server>
+    
+    <Server id="nsd" nesstarId="NSD" url="http://nsddata.nsd.uib.no">
+        <Name xml:lang="en">Norwegian Social Science Data Services (NSD)</Name>
+        <Catalog id="nsd" nesstarId="Catalog140" language="en">
+            <Name xml:lang="en">Norwegian Social Science Data Services</Name>
+            <Abbreviation>NSD</Abbreviation>
+            <Description xml:lang="en">Surveys conducted in Norway from 1950 to today.</Description>
+        </Catalog>
+    </Server>
+
+    <Server id="snd" nesstarId="SND" url="http://nesstar.snd.gu.se/">
+        <Name xml:lang="en">Swedish National Data Services</Name>
+        <Abbreviation>SND</Abbreviation>
+        <!-- Take all surveys from A-Z catalog -->
+        <Catalog id="snd" nesstarId="Catalog1">
+            <Name xml:lang="en">Swedish National Data Services</Name>
+            <Abbreviation>SND</Abbreviation>
+        </Catalog>
+    </Server>
+    
+     <Server id="statcan" nesstarId="MyServer" url="http://www62.statcan.ca">
+        <Agency url="http://www.statcan.gc.ca">Statistics Canada</Agency>
+        <Name xml:lang="en">Statistics Canada Public Use Microdata Files</Name>
+        <Catalog id="statcan_en" nesstarId="DLIB" language="en">
+            <Name xml:lang="en">Statistics Canada PUMF</Name>
+            <Description xml:lang="en">Statistics Canada Public Use Microdata Files</Description>
+        </Catalog>
+        <Catalog id="statcan_fr" nesstarId="Catalog41" language="fr">
+            <Name xml:lang="en">Statistique Canada FMGD</Name>
+            <Description xml:lang="fr">Fichiers de microdonnées à grande diffusion de Statistique Canada</Description>
+        </Catalog>
+    </Server>
+
+    <Server id="badgir" nesstarId="BADGIR" url="http://nesstar.ssc.wisc.edu">
+        <Agency url="http://ssc.wisc.edu/sscc">University of Wisconsin, Social Science Computing Cooperative</Agency>
+        <Name xml:lang="en">Better Access to Data for Global Interdisciplinary Research</Name>
+        <Abbreviation>BADGIR</Abbreviation>
+        <Catalog id="badgir" nesstarId="Catalog1">
+            <Name xml:lang="en">Data and Information Services Center</Name>
+        </Catalog>
+        <Catalog id="badgir" nesstarId="Catalog2">
+            <Name xml:lang="en">National Survey of Families and Households</Name>
+        </Catalog>
+        <Catalog id="badgir" nesstarId="Catalog3">
+            <Name xml:lang="en">SABE</Name>
+        </Catalog>
+        <Catalog id="badgir" nesstarId="Catalog4">
+            <Name xml:lang="en">Puerto Rican Elderly: Health Conditions</Name>
+        </Catalog>
+        <Catalog id="badgir" nesstarId="Catalog5">
+            <Name xml:lang="en">National Health Measurement Study</Name>
+        </Catalog>
+    </Server>
+    
+</Nesstarvester>

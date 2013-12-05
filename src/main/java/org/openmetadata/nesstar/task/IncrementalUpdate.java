@@ -49,8 +49,6 @@ public class IncrementalUpdate {
 	public String runUpdate(Properties applicationProperties) throws Exception{
 		String catalogXml="";
 
-
-
 		this.utils =  new NesstarUtils(options);
 		//Creates the Nesstar Harvester
 		this.nesstarvester = utils.getNesstarHarvester();
@@ -102,7 +100,7 @@ public class IncrementalUpdate {
 				performUpdate(studies, options.getRawFolder(), lang);
 			}
 			
-			fileToDelete.delete();
+			//fileToDelete.delete();
 		}
 
 		applicationProperties.setProperty("updates",updatesString);
@@ -121,7 +119,7 @@ public class IncrementalUpdate {
 		//Get catalog Entries to compare
 		ArrayList<CatalogEntry> newEntries = parseCatalogXml(newCat);
 		ArrayList<CatalogEntry> previousEntries = parseCatalogXml(prevCat);
-System.out.println(prevCat.getAbsolutePath());
+		
 		for(CatalogEntry prevEntry : previousEntries){
 			String prevId = prevEntry.getId();
 			boolean foundId = false;
@@ -193,7 +191,6 @@ System.out.println(prevCat.getAbsolutePath());
 			}
 
 			String procedure = update.substring(update.indexOf(':')+1, update.length());
-
 			if(procedure.equals("new") || procedure.equals("changed")){
 				for(Study study : studies){
 					if(study.getId().equals(fileName)){

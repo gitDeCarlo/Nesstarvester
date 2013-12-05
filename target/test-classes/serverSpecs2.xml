@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:batch="http://www.springframework.org/schema/batch" xsi:schemaLocation="http://www.springframework.org/schema/beans
+        spring-beans.xsd
+        http://www.springframework.org/schema/batch
+        spring-batch.xsd">
+
+ <!--   <bean id="snd" class="org.openmetadata.nesstar.HarvesterOptions">
+        <property name="serverUrl" value="http://nesstar.ess.nsd.uib.no"/>
+        <property name="portNumber" value="80"/>
+        <property name="catalogList">
+            <list>
+                <value>ESS</value>
+            </list>
+        </property>
+        <property name="outputFolder" value="/home/andrew/Nesstar2/no_nsd_ess"/>
+        <property name="db" value="no_nsd_ess"/>
+        <property name="dbPath" value="/home/andrew/BaseXData"/>
+		<property name="throttle" value="1500"/>
+    </bean> -->
+    
+     
+    
+    <bean id="snd" class="org.openmetadata.nesstar.HarvesterOptions">
+        <property name="serverUrl" value="http://compass-data.unil.ch"/>
+        <property name="portNumber" value="80"/>
+         <property name="languageList">
+            <list>
+                <value>en</value>
+            </list>
+        </property>
+        <property name="outputFolder" value="/home/andrew/Nesstar/ch_fors_compass"/>
+        <property name="db" value="ch_fors_compass"/>
+        <property name="dbPath" value="/home/andrew/BaseXData"/>
+    </bean>
+   
+</beans>

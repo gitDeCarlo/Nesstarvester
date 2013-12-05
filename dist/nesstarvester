@@ -1,0 +1,45 @@
+#!/bin/sh
+
+# If NESSTARVESTER_HOME is empty
+if [ -z "$NESSTARVESTER_HOME" ]
+	then
+    SCRIPT="$0"
+	echo $SCRIPT
+    # Catch common issue: script has been symlinked
+	if [ -L "$SCRIPT" ]
+		then
+		SCRIPT="$(readlink "$0")"
+		# If link is relative
+		case "$SCRIPT" in
+   			/*) ;; # fine
+			*) SCRIPT=$( dirname "$0" )/$SCRIPT;; # fix
+		esac
+	fi
+
+    # Work out root from script location
+    NESSTARVESTER_HOME="$( cd "$( dirname "$SCRIPT" )" && pwd )"
+fi
+
+# ---- Setup
+JVM_ARGS=${JVM_ARGS:--Xmx1024M}
+# Expand NESSTARVESTER_HOME but literal *
+NESSTARVESTER_CP="$NESSTARVESTER_HOME"'/lib/nesstarvester.jar'
+LOGGING="-Dlog4j.configuration=file:$NESSTARVESTER_HOME/config/log4j.properties"
+
+# Platform specific fixup
+#??On CYGWIN convert path and end with a ';' 
+case "$(uname)" in
+   CYGWIN*) NESSTARVESTER_CP="$(cygpath -wp "$NESSTARVESTER_CP");";;
+esac
+
+# Respect TMPDIR or TMP (windows?) if present
+if [ -n "$TMPDIR" ]
+	then
+	JVM_ARGS="$JVM_ARGS -Djava.io.tmpdir=\"$TMPDIR\""
+elif [ -n "$TMP" ]
+	then
+	JVM_ARGS="$JVM_ARGS -Djava.io.tmpdir=\"$TMP\""
+fi
+
+java  $JVM_ARGS $LOGGING -classpath "$NESSTARVESTER_CP" org.openmetadata.harvester.Harvester "$@"
+

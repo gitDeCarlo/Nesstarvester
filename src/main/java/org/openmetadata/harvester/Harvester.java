@@ -2,7 +2,6 @@ package org.openmetadata.harvester;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Properties;
@@ -11,6 +10,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmetadata.nesstar.HarvesterOptions;
 import org.openmetadata.nesstar.ServerConfiguration;
+import org.openmetadata.nesstar.task.CatalogRetainer;
 import org.openmetadata.nesstar.task.FullUpdate;
 import org.openmetadata.nesstar.task.IncrementalUpdate;
 
@@ -18,7 +18,7 @@ public class Harvester {
 
 	private static Log log = LogFactory.getLog(Harvester.class);
 	private static Properties applicationProperties;
-	
+
 	/**
 	 * @param args
 	 * @throws Exception 
@@ -63,11 +63,11 @@ public class Harvester {
 		System.out.println(completedMessage);
 		System.out.println();
 		log.info(completedMessage);
-		
+
 		applicationProperties.setProperty("outputFolder", options.getOutputFolder());
-		
+
 		String updatesFile = propertiesFile.substring(0, propertiesFile.lastIndexOf('.'))+".updates";
-		
+
 		//no saving updates for now
 		/*FileOutputStream out = new FileOutputStream(updatesFile);
 		applicationProperties.store(out, "---Harvester Options for Nesstarvester---");
@@ -132,17 +132,23 @@ public class Harvester {
 			options.setZipFolder(applicationProperties.getProperty("zipFolder"));
 		}
 
+		//Set the catalogRetention
+		if(applicationProperties.getProperty("catalogRetention") != null){
+			options.setRetention(applicationProperties.getProperty("catalogRetention"));
+		}
+
+
 		//Set the throttle, if none is found set try 500 as default
 		if(applicationProperties.getProperty("throttle") != null){
 			try{
 				options.setThrottle(Long.parseLong(applicationProperties.getProperty("throttle")));
 			}
 			catch(Exception e){
-				options.setThrottle(500L);
+				options.setThrottle(0L);
 			}
 		}
 		else{
-			options.setThrottle(500L);
+			options.setThrottle(0L);
 		}
 
 		//Set the extension prefix if found 
@@ -159,7 +165,7 @@ public class Harvester {
 		//Set the catalog list if found 
 		if(applicationProperties.getProperty("catalogList") != null){
 			ArrayList<String> catalogList = new ArrayList<String>(Arrays.asList(applicationProperties.getProperty("catalogList").split(",")));
-			options.setLanguageList(catalogList);
+			options.setCatalogList(catalogList);
 		}
 
 		return options;
@@ -196,7 +202,10 @@ public class Harvester {
 		else{
 			performIncrementalUpdate(options);
 		}
-
+		
+		//Evaluates catalogs and deletes any as needed. 
+		CatalogRetainer cr = new CatalogRetainer(options);
+		cr.retainCatalogs();
 	}	
 
 
@@ -215,8 +224,9 @@ public class Harvester {
 
 	private static void performIncrementalUpdate(HarvesterOptions options) throws Exception{
 		log.info("Incremental Update Beginning");
-		System.out.println("Incremental Update in Progress...");	
-		
+		System.out.println("Incremental Update in Progress...");
+		System.out.println();
+
 		IncrementalUpdate incrementalUpdate = new IncrementalUpdate(options);
 		incrementalUpdate.runUpdate(applicationProperties);
 

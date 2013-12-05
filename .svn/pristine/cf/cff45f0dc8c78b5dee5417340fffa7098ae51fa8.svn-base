@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:batch="http://www.springframework.org/schema/batch"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+    	http://www.springframework.org/schema/batch
+		http://www.springframework.org/schema/batch/spring-batch.xsd">
+
+	<bean id="adp" class="org.openmetadata.nesstar.HarvesterOptions">
+			<property name="serverUrl" value="nesstar2.adp.fdv.uni-lj.si" />
+			<property name="portNumber" value="80" />
+			<property name="catalogList">
+				<list>
+					<value>Catalog34</value>
+				</list>
+			</property>
+			<property name="outputFolder" value="C:/Nesstar/adp.eng/" />
+			<property name="codebookFolder" value="codebook/" />
+			<property name="nadaFolder" value="nada" />
+			<property name="studyCatalogsDB" value="AdpEnStudiesCatalog" />
+			<property name="studyDdiDB" value="AdpEnStudiesDdi" />
+	</bean> 
+	
+	<bean id="adp1" class="org.openmetadata.nesstar.HarvesterOptions">
+			<property name="serverUrl" value="nesstar2.adp.fdv.uni-lj.si" />
+			<property name="portNumber" value="80" />
+			<property name="catalogList">
+				<list>
+					<value>ADP</value>
+				</list>
+			</property>
+			<property name="outputFolder" value="C:/Nesstar/adp.sl/" />
+			<property name="codebookFolder" value="codebook/" />
+			<property name="nadaFolder" value="nada" />
+			<property name="studyCatalogsDB" value="AdpSlStudiesCatalog" />
+			<property name="studyDdiDB" value="AdpSlStudiesDdi" />
+	</bean> 
+	
+	<bean id="assda" class="org.openmetadata.nesstar.HarvesterOptions">
+			<property name="serverUrl" value="nesstar.assda.edu.au" />
+			<property name="portNumber" value="80" />
+			<property name="catalogList">
+				<list>
+					<value>ASSDA</value>
+				</list>
+			</property>
+			<property name="outputFolder" value="C:/Nesstar/assda/" />
+			<property name="codebookFolder" value="codebook/" />
+			<property name="nadaFolder" value="nada" />
+			<property name="studyCatalogsDB" value="AssdaStudiesCatalog" />
+			<property name="studyDdiDB" value="AssdaStudiesDdi" />
+	</bean> 
+-<bean id="cdsp" class="org.openmetadata.nesstar.HarvesterOptions">
+			<property name="serverUrl" value="nesstar.sciences-po.fr" />
+			<property name="portNumber" value="81" />
+			<property name="catalogList">
+				<list>
+					<value>cdsp</value>
+				</list>
+			</property>
+			<property name="outputFolder" value="/home/andrew/Metadata/harvester/" />
+			<property name="codebookFolder" value="codebook/" />
+			<property name="nadaFolder" value="nada" />
+			<property name="studyCatalogsDB" value="CdspStudiesCatalog" />
+			<property name="studyDdiDB" value="CdspStudiesDdi" />
+	</bean>
+
+	<bean id="dda" class="org.openmetadata.nesstar.HarvesterOptions">
+			<property name="serverUrl" value="nesstar.dda.dk" />
+			<property name="portNumber" value="80" />
+			<property name="catalogList">
+				<list>
+					<value>DDA</value>
+				</list>
+			</property>
+			<property name="nadaFolder" value="nada" />
+			<property name="outputFolder" value="C:/Nesstar/dda/" />
+			<property name="codebookFolder" value="codebook/" />
+			<property name="studyCatalogsDB" value="DdaStudiesCatalog" />
+			<property name="studyDdiDB" value="DdaStudiesDdi" />
+	</bean> 
+
+	<bean id="dans" class="org.openmetadata.nesstar.HarvesterOptions">
+			<property name="serverUrl" value="nesstar01.dans.knaw.nl" />
+			<property name="portNumber" value="80" />
+			<property name="catalogList">
+				<list>
+					<value>NesstarProductie</value>
+					<value>Catalog1</value>
+					<value>Catalog2</value>
+					<value>Catalog3</value>
+					<value>Catalog4</value>
+					<value>Catalog5</value>
+					<value>Catalog6</value>
+					<value>Catalog7</value>
+				</list>
+			</property>
+			<property name="nadaFolder" value="nada" />
+			<property name="outputFolder" value="C:/Nesstar/dans/" />
+			<property name="codebookFolder" value="codebook/" />
+			<property name="studyCatalogsDB" value="DansStudiesCatalog" />
+			<property name="studyDdiDB" value="DansStudiesDdi" />
+	</bean> 
+
+	<bean id="esds" class="org.openmetadata.nesstar.HarvesterOptions">
+			<property name="serverUrl" value="nesstar.esds.ac.uk" />
+			<property name="portNumber" value="80" />
+			<property name="catalogList">
+				<list>
+					<value>Catalog56</value>
+				</list>
+			</property>
+			<property name="nadaFolder" value="nada" />
+			<property name="outputFolder" value="C:/Nesstar/esds.research/" />
+			<property name="codebookFolder" value="codebook/" />
+			<property name="studyCatalogsDB" value="EsdsReseachStudiesCatalog" />
+			<property name="studyDdiDB" value="EsdsReseachStudiesDdi" />
+	</bean> 	
+	
+	<bean id="esds1" class="org.openmetadata.nesstar.HarvesterOptions">
+			<property name="serverUrl" value="nesstar.esds.ac.uk" />
+			<property name="portNumber" value="80" />
+			<property name="catalogList">
+				<list>
+					<value>Catalog27</value>
+				</list>
+			</property>
+			<property name="nadaFolder" value="nada" />
+			<property name="outputFolder" value="C:/Nesstar/esds.teaching/" />
+			<property name="codebookFolder" value="codebook/" />
+			<property name="studyCatalogsDB" value="EsdsTeachingStudiesCatalog" />
+			<property name="studyDdiDB" value="EsdsTeachingStudiesDdi" />
+	</bean> 
+
+	<bean id="ess" class="org.openmetadata.nesstar.HarvesterOptions">
+			<property name="serverUrl" value="nesstar.ess.nsd.uib.no" />
+			<property name="portNumber" value="80" />
+			<property name="catalogList">
+				<list>
+					<value>ess</value>
+				</list>
+			</property>
+			<property name="nadaFolder" value="nada" />
+			<property name="outputFolder" value="C:/Nesstar/ess/" />
+			<property name="codebookFolder" value="codebook/" />
+			<property name="studyCatalogsDB" value="EssStudiesCatalog" />
+			<property name="studyDdiDB" value="EssStudiesDdi" />
+	</bean> 
+
+	<bean id="fsd" class="org.openmetadata.nesstar.HarvesterOptions">
+			<property name="serverUrl" value="fsd2.uta.fi" />
+			<property name="portNumber" value="8080" />
+			<property name="catalogList">
+				<list>
+					<value>Catalog2</value>
+				</list>
+			</property>
+			<property name="nadaFolder" value="nada" />
+			<property name="outputFolder" value="C:/Nesstar/fsd.en/" />
+			<property name="codebookFolder" value="codebook/" />
+			<property name="studyCatalogsDB" value="FsdEnStudiesCatalog" />
+			<property name="studyDdiDB" value="FsdEnStudiesDdi" />
+	</bean> 
+	
+	<bean id="fsd1" class="org.openmetadata.nesstar.HarvesterOptions">
+			<property name="serverUrl" value="fsd2.uta.fi" />
+			<property name="portNumber" value="8080" />
+			<property name="catalogList">
+				<list>
+					<value>Catalog1</value>
+				</list>
+			</property>
+			<property name="nadaFolder" value="nada" />
+			<property name="outputFolder" value="C:/Nesstar/fsd.fi/" />
+			<property name="codebookFolder" value="codebook/" />
+			<property name="studyCatalogsDB" value="FsdFiStudiesCatalog" />
+			<property name="studyDdiDB" value="FsdFiStudiesDdi" />
+	</bean> 
+	
+	<bean id="fsd2" class="org.openmetadata.nesstar.HarvesterOptions">
+			<property name="serverUrl" value="fsd2.uta.fi" />
+			<property name="portNumber" value="8080" />
+			<property name="catalogList">
+				<list>
+					<value>Catalog3</value>
+				</list>
+			</property>
+			<property name="nadaFolder" value="nada" />
+			<property name="outputFolder" value="C:/Nesstar/fsd.sv/" />
+			<property name="codebookFolder" value="codebook/" />
+			<property name="studyCatalogsDB" value="FsdSvStudiesCatalog" />
+			<property name="studyDdiDB" value="FsdSvStudiesDdi" />
+	</bean> 
+	
+	<bean id="icpsr" class="org.openmetadata.nesstar.HarvesterOptions">
+			<property name="serverUrl" value="fsd2.uta.fi" />
+			<property name="portNumber" value="8080" />
+			<property name="nadaFolder" value="nada" />
+			<property name="outputFolder" value="C:/Users/Andrew/Downloads/abstractsicpsr/ICPSR/" />
+			<property name="codebookFolder" value="codebook/" />
+			<property name="studyCatalogsDB" value="IcpsrStudiesCatalog" />
+			<property name="studyDdiDB" value="IcpsrStudiesDdi" />
+			<property name="rawFolder" value="codebook122" />
+			<property name="catalogList">
+				<list>
+				</list>
+			</property>
+	</bean> 
+	
+	<bean id="gesis" class="org.openmetadata.nesstar.HarvesterOptions">
+			<property name="serverUrl" value="zacat.gesis.org" />
+			<property name="portNumber" value="80" />
+			<property name="catalogList">
+				<list>
+					<value>Catalog58</value>
+				</list>
+			</property>
+			<property name="nadaFolder" value="nada" />
+			<property name="outputFolder" value="C:/Nesstar/gesis.issp/" />
+			<property name="codebookFolder" value="codebook/" />
+			<property name="studyCatalogsDB" value="GesisIsspStudiesCatalog" />
+			<property name="studyDdiDB" value="GesisIsspStudiesDdi" />
+	</bean> 
+
+	<bean id="gesis1" class="org.openmetadata.nesstar.HarvesterOptions">
+			<property name="serverUrl" value="zacat.gesis.org" />
+			<property name="portNumber" value="80" />
+			<property name="catalogList">
+				<list>
+					<value>Catalog57</value>
+				</list>
+			</property>
+			<property name="nadaFolder" value="nada" />
+			<property name="outputFolder" value="C:/Nesstar/gesis.eurobaro/" />
+			<property name="codebookFolder" value="codebook/" />
+			<property name="studyCatalogsDB" value="GesisEurobaroStudiesCatalog" />
+			<property name="studyDdiDB" value="GesisEurobaroStudiesDdi" />
+	</bean> 
+
+	<bean id="gesis2" class="org.openmetadata.nesstar.HarvesterOptions">
+			<property name="serverUrl" value="zacat.gesis.org" />
+			<property name="portNumber" value="80" />
+			<property name="catalogList">
+				<list>
+					<value>Catalog29</value>
+				</list>
+			</property>
+			<property name="nadaFolder" value="nada" />
+			<property name="outputFolder" value="C:/Nesstar/gesis.sse/" />
+			<property name="codebookFolder" value="codebook/" />
+			<property name="studyCatalogsDB" value="GesisSseStudiesCatalog" />
+			<property name="studyDdiDB" value="GesisSseStudiesDdi" />
+	</bean>
+	
+	<bean id="gesis3" class="org.openmetadata.nesstar.HarvesterOptions">
+			<property name="serverUrl" value="zacat.gesis.org" />
+			<property name="portNumber" value="80" />
+			<property name="catalogList">
+				<list>
+					<value>Catalog5</value>
+				</list>
+			</property>
+			<property name="nadaFolder" value="nada" />
+			<property name="outputFolder" value="C:/Nesstar/gesis.evs/" />
+			<property name="codebookFolder" value="codebook/" />
+			<property name="studyCatalogsDB" value="GesisEvsStudiesCatalog" />
+			<property name="studyDdiDB" value="GesisEvsStudiesDdi" />
+	</bean> 	
+
+	<bean id="gesis4" class="org.openmetadata.nesstar.HarvesterOptions">
+			<property name="serverUrl" value="zacat.gesis.org" />
+			<property name="portNumber" value="80" />
+			<property name="catalogList">
+				<list>
+					<value>Catalog12</value>
+				</list>
+			</property>
+			<property name="nadaFolder" value="nada" />
+			<property name="outputFolder" value="C:/Nesstar/gesis.elect/" />
+			<property name="codebookFolder" value="codebook/" />
+			<property name="studyCatalogsDB" value="GesisElectStudiesCatalog" />
+			<property name="studyDdiDB" value="GesisElectStudiesDdi" />
+	</bean> 
+	
+	<bean id="gesis5" class="org.openmetadata.nesstar.HarvesterOptions">
+			<property name="serverUrl" value="zacat.gesis.org" />
+			<property name="portNumber" value="80" />
+			<property name="catalogList">
+				<list>
+					<value>Catalog9</value>
+				</list>
+			</property>
+			<property name="nadaFolder" value="nada" />
+			<property name="outputFolder" value="C:/Nesstar/gesis.polit/" />
+			<property name="codebookFolder" value="codebook/" />
+			<property name="studyCatalogsDB" value="GesisPolitStudiesCatalog" />
+			<property name="studyDdiDB" value="GesisPolitStudiesDdi" />
+	</bean>
+
+	<bean id="issda" class="org.openmetadata.nesstar.HarvesterOptions">
+			<property name="serverUrl" value="nesstar.ucd.ie" />
+			<property name="portNumber" value="8080" />
+			<property name="catalogList">
+				<list>
+					<value>Catalog15</value>
+					<value>Catalog2</value>
+					<value>Catalog13</value>
+					<value>Catalog17</value>
+					<value>Catalog18</value>
+					<value>Catalog24</value>
+					<value>Catalog19</value>
+					<value>Catalog20</value>
+					<value>Catalog21</value>
+					<value>Catalog22</value>
+					<value>Catalog23</value>
+					<value>Catalog25</value>
+					<value>Catalog28</value>
+				</list>
+			</property>
+			<property name="nadaFolder" value="nada" />
+			<property name="outputFolder" value="C:/Nesstar/issda/" />
+			<property name="codebookFolder" value="codebook/" />
+			<property name="studyCatalogsDB" value="IssdaStudiesCatalog" />
+			<property name="studyDdiDB" value="IssdaStudiesDdi" />
+	</bean> 
+
+	<bean id="nsd" class="org.openmetadata.nesstar.HarvesterOptions">
+			<property name="serverUrl" value="nsddata.nsd.uib.no" />
+			<property name="portNumber" value="80" />
+			<property name="catalogList">
+				<list>
+					<value>Catalog140</value>
+				</list>
+			</property>
+			<property name="nadaFolder" value="nada" />
+			<property name="outputFolder" value="C:/Nesstar/nsd/" />
+			<property name="codebookFolder" value="codebook/" />
+			<property name="studyCatalogsDB" value="NsdStudiesCatalog" />
+			<property name="studyDdiDB" value="NsdStudiesDdi" />
+	</bean> 
+	
+	<bean id="snd" class="org.openmetadata.nesstar.HarvesterOptions">
+			<property name="serverUrl" value="nesstar.snd.gu.se" />
+			<property name="portNumber" value="80" />
+			<property name="catalogList">
+				<list>
+					<value>Catalog1</value>
+				</list>
+			</property>
+			<property name="nadaFolder" value="nada" />
+			<property name="outputFolder" value="C:/Nesstar/snd/" />
+			<property name="codebookFolder" value="codebook/" />
+			<property name="studyCatalogsDB" value="SndStudiesCatalog" />
+			<property name="studyDdiDB" value="SndStudiesDdi" />
+	</bean> 
+	
+	<bean id="statcan" class="org.openmetadata.nesstar.HarvesterOptions">
+			<property name="serverUrl" value="www62.statcan.ca" />
+			<property name="portNumber" value="80" />
+			<property name="catalogList">
+				<list>
+					<value>DLIB</value>
+				</list>
+			</property>
+			<property name="nadaFolder" value="nada" />
+			<property name="outputFolder" value="C:/Nesstar/statcan.en/" />
+			<property name="codebookFolder" value="codebook/" />
+			<property name="studyCatalogsDB" value="StatcanEnStudiesCatalog" />
+			<property name="studyDdiDB" value="StatcanEnStudiesDdi" />
+	</bean> 
+	-->
+		<bean id="statcan1" class="org.openmetadata.nesstar.HarvesterOptions">
+			<property name="serverUrl" value="www62.statcan.ca" />
+			<property name="portNumber" value="80" />
+			<property name="catalogList">
+				<list>
+					<value>Catalog41</value>
+				</list>
+			</property>
+			<property name="outputFolder" value="/home/andrew/Metadata/harvester/" />
+			<property name="codebookFolder" value="codebook/" />
+			<property name="nadaFolder" value="nada" />
+			<property name="studyCatalogsDB" value="CdspStudiesCatalog" />
+			<property name="studyDdiDB" value="CdspStudiesDdi" />
+	</bean> 
+
+	<bean id="badgir" class="org.openmetadata.nesstar.HarvesterOptions">
+			<property name="serverUrl" value="nesstar.ssc.wisc.edu" />
+			<property name="portNumber" value="80" />
+			<property name="catalogList">
+				<list>
+					<value>Catalog1</value>
+					<value>Catalog2</value>
+					<value>Catalog3</value>
+					<value>Catalog4</value>
+					<value>Catalog5</value>
+				</list>
+			</property>
+			<property name="nadaFolder" value="nada" />
+			<property name="outputFolder" value="C:/Nesstar/badgir/" />
+			<property name="codebookFolder" value="codebook/" />
+			<property name="studyCatalogsDB" value="BadgirStudiesCatalog" />
+			<property name="studyDdiDB" value="BadgirStudiesDdi" />
+	</bean> 
+
+</beans>

@@ -1,21 +1,19 @@
 package org.openmetadata.ddiharvester;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.LinkedHashMap;
 import java.util.Properties;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.basex.core.Context;
 import org.basex.core.cmd.Close;
@@ -24,12 +22,6 @@ import org.basex.core.cmd.XQuery;
 import org.junit.Test;
 import org.openmetadata.harvester.Harvester;
 import org.openmetadata.nesstar.HarvesterOptions;
-import org.openmetadata.nesstar.ServerConfiguration;
-import org.openmetadata.nesstar.task.Publisher;
-
-import com.nesstar.api.FolderTreeNode;
-import com.nesstar.api.NesstarTreeNode;
-import com.nesstar.api.Study;
 
 public class harvesterTest {
 
@@ -38,6 +30,7 @@ public class harvesterTest {
 	public void testHarvester() throws Exception{
 
 		String[] args = {"src/test/resources/harvester.properties"};
+		//String[] args = {"src/test/resources/ukda.properties"};
 
 		Harvester.main(args);
 
@@ -49,7 +42,7 @@ public class harvesterTest {
 		//delete(database);
 
 	}
-	
+
 	@Test
 	public void createProperties() throws Exception{
 		// create and load default properties
@@ -114,97 +107,6 @@ public class harvesterTest {
 		}
 	}
 
-
-	@Test
-	public void testPublish() throws Exception{
-
-		HarvesterOptions options = new HarvesterOptions();
-		options.setServerUrl("http://nesstar.snd.gu.se");
-		options.setPortNumber(80);
-		options.setOutputFolder("/home/andrew/Nesstar/snd.eng/");
-		options.setDb("AdpEnStudies");
-		options.setServerID("SND");		
-
-		Publisher publisher = new Publisher(options);
-		publisher.publish();
-	}
-
-	@Test 
-	public void reap() throws Exception{
-		LinkedHashMap<String, Integer> servers = new LinkedHashMap<String, Integer>();
-		servers.put("http://nesstar.dda.dk",80);
-		//		servers.put("s-nesstar.sociologia.unimib.it", 80);
-		//		servers.put("nesstar.dans.knaw.nl",80);
-		//		servers.put("nesstar.dda.dk",80);
-		//		servers.put("nesstar.sidos.ch", 80);
-		//		servers.put("fsd2.uta.fi",8080);
-		//		servers.put("zacat.gesis.org",80);
-		//		servers.put("94.70.130.211", 80);
-		//		servers.put("nesstar.snd.gu.se",80);
-		//		servers.put("80.75.252.24", 8080);
-		//		servers.put("nesstar.esds.ac.uk", 80);
-		//		servers.put("http://nsddata.nsd.uib.no", 80);
-		//		servers.put("mma.nsd.uib.no", 80);
-		//		servers.put("nesstar.ess.nsd.uib.no",80);
-		//		servers.put("essmdr.nsd.uib.no", 80);
-		//		servers.put("eed.nsd.uib.no", 80);
-		//		servers.put("status.vox.no", 80);
-		//		servers.put("www.foustatistikkbanken.no", 80);
-		//		servers.put("www.norgeshelsa.no", 80);
-		//		servers.put("tromsoundersokelsen.uit.no", 80);
-		//		servers.put("conor.uit.no", 80);
-		//		servers.put("misa.uit.no", 80);
-		//		servers.put("www62.statcan.ca",80);
-		//		servers.put("www.eastsussexinfigures.org.uk", 80);
-		//		servers.put("odesi1.scholarsportal.info", 80);
-		//		servers.put("bergamo.ens.fr", 81);
-		//		servers.put("nesstar.ssc.wisc.edu",81);
-		//		servers.put("nesstar.sciences-po.fr",81);
-		//		servers.put("nesstar.ined.fr", 80);
-		//		servers.put("nesstar.ucd.ie",80);
-		//		servers.put("www.lidata.eu", 80);
-
-
-		String info = "src/test/resources/ServerCatalogs2.txt";
-		FileWriter fw = new FileWriter(info);
-		BufferedWriter bw = new BufferedWriter(fw);
-
-		for(String key : servers.keySet()){
-			ServerConfiguration serverConfig = new ServerConfiguration();
-			String serverUrl = key;
-			Integer portNumber = servers.get(key);
-			try{
-
-				HarvesterOptions options = new HarvesterOptions();
-				options.setServerUrl(serverUrl);
-				options.setPortNumber(portNumber);
-
-				//creates a serverConfiguation based on the url given in the file
-				serverConfig.addServer(options);
-
-				bw.write(key+"\n");
-
-				ArrayList<Study> studies = new ArrayList<Study>();
-
-				for(NesstarTreeNode treeNode : serverConfig.getServers().get(0).getTreeRoot().getChildren()){
-					bw.write("\t"+treeNode.getLabel()+"\n");
-					if(treeNode instanceof FolderTreeNode){
-						FolderTreeNode folderNode = (FolderTreeNode)treeNode;
-						for(NesstarTreeNode treeNode2 : folderNode.getChildren()){
-							bw.write("\t\t"+treeNode2.getLabel()+"\n");
-						}
-					}
-				}
-			}
-			catch(Exception e){
-				bw.write(key+"\n");
-				bw.write("\tCould not find server.\n");
-			}
-			bw.write("\n");
-		}
-		bw.close();
-	}
-
 	@Test 
 	public void testserialization() throws Exception{
 		HarvesterOptions options = new HarvesterOptions();
@@ -245,14 +147,14 @@ public class harvesterTest {
 		packager.packageFiles();
 		 */
 	}
-	
+
 	@Test
 	public void testQuery() throws Exception{
-		
+
 		Context context = new Context();
-		
+
 		new Open("ch_fors_compass").execute(context);
-		
+
 		InputStream in = getClass().getResourceAsStream("/nesstarvester_catalog.xq");
 		BufferedReader br = new BufferedReader(new InputStreamReader(in));
 
@@ -264,10 +166,36 @@ public class harvesterTest {
 			xquery += queryLine;
 		}
 		br.close();
-		
+
 		String updates = (new XQuery(xquery).execute(context));
 		System.out.println(updates);
-		
+
 		new Close().execute(context);
+	}
+
+
+	@Test
+	public void testGetLang(){
+		String retention = "1h";
+
+		String retentionRegex = "[0-9]+";
+		Pattern p = Pattern.compile(retentionRegex);
+		Matcher m = p.matcher(retention);
+		if(!m.matches()){
+			Matcher m2 = p.matcher(retention);
+			if(m2.find()){
+				//split the retentionTime and find units
+				String num = m2.group(0);
+				String unit = retention.replaceFirst(num, "");
+
+				System.out.println(num+ " | "+unit);
+			}
+			else{
+				System.out.println("here");
+			}
+		}
+		else{
+			System.out.println("here");
+		}
 	}
 }

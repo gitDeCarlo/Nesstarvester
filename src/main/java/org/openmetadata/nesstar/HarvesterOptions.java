@@ -16,12 +16,14 @@ public class HarvesterOptions implements Serializable{
 	private String dbPath;
 	private String zipFolder;
 	private String extensionPrefix ="";
+	private String lastUpdate;
 	private String serverID = "";
 	private ArrayList<String> catalogList;
 	private ArrayList<String> languageList;
   	private Long throttle;
 	private String userName;
 	private String password;
+	private String retention;
 	
 	public String getServerUrl() {
 		return serverUrl;
@@ -156,5 +158,21 @@ public class HarvesterOptions implements Serializable{
 	
 	public void setSyncFolder(String syncFolder) {
 		this.syncFolder = syncFolder;
+	}
+	
+	public String getLastUpdate() {
+		return lastUpdate;
+	}
+	
+	public void setLastUpdate(String lastUpdate) {
+		this.lastUpdate = lastUpdate;
+	}
+	
+	public void setRetention(String retention) {
+		this.retention = retention;
+	}
+	
+	public String getRetention() {
+		return retention;
 	}
 }

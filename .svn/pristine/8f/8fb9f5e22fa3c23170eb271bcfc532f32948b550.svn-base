@@ -1,0 +1,13 @@
+#---Harvester Options for Nesstarvester---
+#Mon Nov 04 14:25:02 MST 2013
+codebookFolder=/subfolderAddedToOutputFolder
+serverUrl=www.exampleserver.com
+catalogList=cat1,cat2,cat3
+languageList=en,fr,ch
+rawFolder=/subfolderAddedToOutputFolder
+extensionPrefix=prefix that will be added before the final file extension
+zipFolder=/subfolderAddedToOutputFolder
+throttle=1500 (milliseconds to wait inbetween pulling files from server)
+outputFolder=/path/to/folder/containing/ddi/
+serverID=exampleServerName
+portNumber=1824
